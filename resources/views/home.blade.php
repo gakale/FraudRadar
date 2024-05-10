@@ -135,8 +135,38 @@
     <!-- Post vacancy CTA-->
 
     <!-- Steps-->
-    <section class="container pb-5 mb-md-3 mt-n2 mt-lg-0"> <div class="row g-2 g-xl-4"> <div class="col-lg-3 col-sm-6"> <div class="card card-body card-hover border-0 h-100"> <div class="fs-2 fw-bold text-primary lh-base mb-2">01</div> <h3 class="h5 mb-2">Signalez une fraude</h3> <p class="fs-sm mb-0">Signalez une fraude en ligne en remplissant notre formulaire détaillé pour aider notre communauté à rester en sécurité.</p> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="card card-body card-hover border-0 h-100"> <div class="fs-2 fw-bold text-primary lh-base mb-2">02</div> <h3 class="h5 mb-2">Suivez l'évolution de votre signalement</h3> <p class="fs-sm mb-0">Suivez l'évolution de votre signalement en temps réel et recevez des mises à jour sur les mesures prises par notre équipe.</p> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="card card-body card-hover border-0 h-100"> <div class="fs-2 fw-bold text-primary lh-base mb-2">03</div> <h3 class="h5 mb-2">Consultez les signalements précédents</h3> <p class="fs-sm mb-0">Consultez les signalements précédents pour rester informé des fraudes en ligne les plus récentes et des tendances émergentes.</p> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="card card-body card-hover border-0 h-100"> <div class="fs-2 fw-bold text-primary lh-base mb-2">04</div> <h3 class="h5 mb-2">Restez en sécurité en ligne</h3> <p class="fs-sm mb-0">Restez informé des meilleures pratiques de sécurité en ligne pour protéger vos informations personnelles et financières.</p> </div> </div> </div> </section>
-    <!-- Mobile app CTA-->
+    <section class="container pb-5 mb-md-3 mt-n2 mt-lg-0">
+      <div class="row g-2 g-xl-4">
+        <div class="col-lg-3 col-sm-6">
+          <div class="card card-body card-hover border-0 h-100">
+            <div class="fs-2 fw-bold text-primary lh-base mb-2">01</div>
+            <h3 class="h5 mb-2">Signalez une fraude</h3>
+            <p class="fs-sm mb-0">Signalez une fraude en ligne en remplissant notre formulaire détaillé pour aider notre communauté à rester en sécurité.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="card card-body card-hover border-0 h-100">
+            <div class="fs-2 fw-bold text-primary lh-base mb-2">02</div>
+            <h3 class="h5 mb-2">Suivez l'évolution de votre signalement</h3>
+            <p class="fs-sm mb-0">Suivez l'évolution de votre signalement en temps réel et recevez des mises à jour sur les mesures prises par notre équipe.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="card card-body card-hover border-0 h-100">
+            <div class="fs-2 fw-bold text-primary lh-base mb-2">03</div>
+            <h3 class="h5 mb-2">Consultez les signalements précédents</h3>
+            <p class="fs-sm mb-0">Consultez les signalements précédents pour rester informé des fraudes en ligne les plus récentes et des tendances émergentes.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="card card-body card-hover border-0 h-100">
+            <div class="fs-2 fw-bold text-primary lh-base mb-2">04</div>
+            <h3 class="h5 mb-2">Restez en sécurité en ligne</h3>
+            <p class="fs-sm mb-0">Restez informé des meilleures pratiques de sécurité en ligne pour protéger vos informations personnelles et financières.</p>
+          </div>
+        </div>
+      </div>
+    </section>    <!-- Mobile app CTA-->
 
     <!-- Pricing-->
 

@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('fraud_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreignId('fraud_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('fraud_id')->on('frauds')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->on('users')->constrained()->onDelete('cascade');
             $table->text('content');
             $table->integer('like')->nullable();
             $table->timestamps();
