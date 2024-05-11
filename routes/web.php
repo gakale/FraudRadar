@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FraudController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 /*
@@ -15,9 +16,18 @@ use App\Http\Controllers\UsersController;
 
 Route::get('/home', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/showRegistrationForm', [UsersController::class, 'showRegistrationForm'])->name('showRegistrationForm');
 Route::post('/register', [UsersController::class, 'register'])->name('register');
 Route::get('/showLoginForm', [UsersController::class, 'showLoginForm'])->name('showLoginForm');
 Route::post('/login', [UsersController::class, 'login'])->name('login');
+Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+Route::get('/user/index', [UsersController::class, 'index'])->name('user.index');
+Route::get('/user/post', [UsersController::class, 'postIndex'])->name('user.post');
+
+Route::get('/fraud/create', [FraudController::class, 'create'])->name('fraud.create');
+Route::post('/fraud/store', [FraudController::class, 'store'])->name('fraud.store');
+
+Route::post('/tmp-upload', [FraudController::class, 'tmpUpload']);
+Route::get('/tmp-delete', [FraudController::class, 'tmpDelete']);

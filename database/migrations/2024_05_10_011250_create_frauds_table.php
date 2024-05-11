@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('user_id')->on('users')->constrained()->onDelete('cascade');
             $table->string('status')->default('pending');
             $table->string('image');
+            $table->string('tags')->nullable();
             $table->string('video')->nullable();
             $table->string('url')->nullable();
             $table->integer('like')->nullable();

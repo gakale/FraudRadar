@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from finder.createx.studio/signup-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Apr 2024 15:07:30 GMT -->
+  
+<!-- Mirrored from finder.createx.studio/car-finder-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Apr 2024 15:07:42 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
-    <title>FraudRadar | Inscription</title>
+    <title>Finder | Car Finder | 404 Not Found</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
-    <meta name="author" content="gnkalehacker">
+    <meta name="author" content="Createx Studio">
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
@@ -86,7 +86,7 @@
           transform: rotate(360deg);
         }
       }
-
+      
     </style>
     <!-- Page loading scripts-->
     <script>
@@ -99,7 +99,7 @@
           }, 2000);
         };
       })();
-
+      
     </script>
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
@@ -162,98 +162,29 @@
     </div>
     <main class="page-wrapper">
       <!-- Page content-->
-      <div class="container-fluid d-flex h-100 align-items-center justify-content-center py-4 py-sm-5">
-        <div class="card card-light card-body" style="max-width: 940px"><a class="position-absolute top-0 end-0 nav-link-light fs-sm py-1 px-2 mt-3 me-3" href="#" onclick="window.history.go(-1); return false;"><i class="fi-arrow-long-left fs-base me-2"></i>Go back</a>
-          <div class="row mx-0 align-items-center">
-            <div class="col-md-6 border-end-md border-light p-2 p-sm-5">
-                <h2 class="h3 text-light mb-4 mb-sm-5">Rejoignez notre communauté.<br>Signalez les fraudes en ligne et contribuez à un internet plus sûr.</h2>
-                <ul class="list-unstyled mb-4 mb-sm-5">
-                    <li class="d-flex mb-2">
-                        <i class="fi-check-circle text-primary mt-1 me-2"></i>
-                        <span class="text-light">Signalez des fraudes en ligne en quelques clics</span>
-                      </li>
-                      <li class="d-flex mb-2">
-                        <i class="fi-check-circle text-primary mt-1 me-2"></i>
-                        <span class="text-light">Restez informé des dernières arnaques et fraudes en ligne</span>
-                      </li>
-                      <li class="d-flex mb-0">
-                        <i class="fi-check-circle text-primary mt-1 me-2"></i>
-                        <span class="text-light">Collaborez avec d'autres utilisateurs pour signaler et combattre les fraudes en ligne</span>
-                      </li>
-                 </ul><img class="d-block mx-auto" src="img/signin-modal/signup-dark.svg" width="344" alt="Illustartion">
-              <div class="text-light mt-sm-4 pt-md-3"><span class="opacity-60">Already have an account? </span><a class="text-light" href="{{ route('showLoginForm') }}">Sign in</a></div>
+      <section class="d-flex align-items-center position-relative min-vh-100 py-5">
+        <!-- Bg overlay--><span class="position-absolute top-50 start-50 translate-middle zindex-1 rounded-circle mt-sm-0 mt-n5" style="width: 50vw; height: 50vw; background-color: rgba(83, 74, 117, 0.3); filter: blur(6.4vw);"></span>
+        <!-- Overlay content-->
+        <div class="container d-flex justify-content-center position-relative zindex-5 text-center">
+          <div class="col-lg-8 col-md-10 col-12 px-0">
+            <h1 class="display-1 mb-lg-5 mb-4 text-light">Oops!</h1>
+            <div class="ratio ratio-16x9 mx-auto mb-lg-5 mb-4 py-4" style="max-width: 556px;">
+              <lottie-player class="py-4" src="json/animation-car-finder-404.json" background="transparent.html" speed="1" loop autoplay></lottie-player>
             </div>
-            <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
-              <div class="d-flex align-items-center py-3 mb-3">
-                <hr class="hr-light w-100">
-                <div class="text-light opacity-70 px-3">Or</div>
-                <hr class="hr-light w-100">
-              </div>
-
-              <form class="needs-validation" method="POST" action="{{ route('register') }}">
-                @csrf
-                @if (isset($errors))
-                @foreach ($errors as $field => $messages)
-                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header bg-danger text-white">
-                            <i class="fi-x-circle me-2"></i>
-                            <span class="fw-bold me-auto">Erreur de validation</span>
-                            <button type="button" class="btn-close btn-close-white text-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body text-danger">
-                            <strong>{{ ucfirst($field) }}:</strong>
-                            @foreach ($messages as $message)
-                                {{ $message }}<br>
-                            @endforeach
-                        </div>
-                    </div>
-                @endforeach
-            @endif
-                <div class="mb-4">
-                  <label class="form-label text-light" for="signup-name">Pseudo </label>
-                  <input class="form-control form-control-light" type="text" id="signup-name" placeholder="Enter your full name" required name="username">
-                </div>
-                <div class="mb-4">
-                  <label class="form-label text-light" for="signup-email">Email address</label>
-                  <input class="form-control form-control-light" type="email" id="signup-email" placeholder="Enter your email" required name="email">
-                </div>
-                <div class="mb-4">
-                  <label class="form-label text-light" for="signup-password">Password <span class='fs-sm opacity-50'>min. 8 char</span></label>
-                  <div class="password-toggle">
-                    <input class="form-control form-control-light" type="password" id="signup-password" minlength="8" required name="password">
-                    <label class="password-toggle-btn" aria-label="Show/hide password">
-                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="mb-4">
-                  <label class="form-label text-light" for="signup-password-confirm">Confirm password</label>
-                  <div class="password-toggle">
-                    <input class="form-control form-control-light" type="password" id="signup-password-confirm" minlength="8" required name="password_confirmation">
-                    <label class="password-toggle-btn" aria-label="Show/hide password">
-                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator" name="password_confirmation"></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="form-check form-check-light mb-4">
-                  <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
-                  <label class="form-check-label" for="agree-to-terms"><span class='opacity-70'>By joining, I agree to the</span> <a href='#' class='text-light'>Terms of use</a> <span class='opacity-70'>and</span> <a href='#' class='text-light'>Privacy policy</a></label>
-                </div>
-                <input class="btn btn-primary btn-lg w-100"  type="submit" value="S'inscrire">
-              </form>
-            </div>
+            <p class="h2 mb-lg-5 mb-4 pb-2 text-light">The requested page doesn’t exist</p><a class="btn btn-lg btn-primary w-sm-auto w-100 mb-3 me-sm-4" href="car-finder-home.html">Go to homepage</a><a class="btn btn-lg btn-outline-light w-sm-auto w-100 mb-3" href="car-finder-contacts.html">Contact us</a>
           </div>
         </div>
-      </div>
+      </section>
     </main>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
-    <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/simplebar/dist/simplebar.min.js') }}"></script>
-    <script src="{{ asset('vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js') }}"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="vendor/%40lottiefiles/lottie-player/dist/lottie-player.js"></script>
     <!-- Main theme script-->
-    <script src="{{ asset('js/theme.min.js') }}"></script>
+    <script src="js/theme.min.js"></script>
   </body>
 
-<!-- Mirrored from finder.createx.studio/signup-dark.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Apr 2024 15:07:30 GMT -->
+<!-- Mirrored from finder.createx.studio/car-finder-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 28 Apr 2024 15:07:43 GMT -->
 </html>

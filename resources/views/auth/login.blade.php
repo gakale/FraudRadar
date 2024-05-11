@@ -167,7 +167,7 @@
           <div class="row mx-0 align-items-center">
             <div class="col-md-6 border-end-md border-light p-2 p-sm-5">
               <h2 class="h3 text-light mb-4 mb-sm-5">Hey there!<br>Welcome back.</h2><img class="d-block mx-auto" src="img/signin-modal/signin-dark.svg" width="344" alt="Illustartion">
-              <div class="text-light mt-4 mt-sm-5"><span class="opacity-60">Don't have an account? </span><a class="text-light" href="signup-dark.html">Sign up here</a></div>
+              <div class="text-light mt-4 mt-sm-5"><span class="opacity-60">Don't have an account? </span><a class="text-light" href="{{ route('showRegistrationForm') }}">Sign up here</a></div>
             </div>
             <div class="col-md-6 px-2 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
               <div class="d-flex align-items-center py-3 mb-3">
@@ -175,24 +175,43 @@
                 <div class="text-light opacity-70 px-3">Or</div>
                 <hr class="hr-light w-100">
               </div>
+              @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
               <form class="needs-validation" method="POST" action="{{ route('login') }}" id="login-form">
                 @csrf
                 <div class="mb-4">
-                  <label class="form-label text-light mb-2" for="signin-email">Email address</label>
-                  <input class="form-control form-control-light" name="email" type="email" id="signin-email" placeholder="Enter your email" required>
+                    <label class="form-label text-light mb-2" for="signin-email">Email address</label>
+                    <input class="form-control form-control-light {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" type="email" id="signin-email" placeholder="Enter your email" required>
+                    @if ($errors->has('email'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="mb-4">
                   <div class="d-flex align-items-center justify-content-between mb-2">
                     <label class="form-label text-light mb-0" for="signin-password">Mot de passe</label><a class="fs-sm text-light" href="#">Forgot password?</a>
                   </div>
                   <div class="password-toggle">
-                    <input class="form-control form-control-light" name="password" type="password" id="signin-password" placeholder="Enter password" required>
+                    <input class="form-control form-control-light {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" type="password" id="signin-password" placeholder="Enter password" required>
                     <label class="password-toggle-btn" aria-label="Show/hide password">
                       <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                     </label>
                   </div>
+                    @if ($errors->has('password'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg w-100" type="submit">Se Connecté</button>
+                <input class="btn btn-primary btn-lg w-100" type="submit" value="Se connectez">
               </form>
             </div>
           </div>
@@ -209,22 +228,7 @@
 
     <!-- Main theme script-->
     <script src="{{ asset('js/theme.min.js') }}"></script>
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            axios.post(this.action, new FormData(this))
-                .then(function(response) {
-                    window.location.href = response.data.redirect_url;
-                })
-                .catch(function(error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erreur',
-                        text: error.response.data.message,
-                    });
-                });
-        });
-    </script>
+
 </body>
 
 

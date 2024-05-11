@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 @include('layouts.head')
-<body>
+<body class="bg-dark">
         @include('layouts.header')
 
             @yield('content')
-        </main>
 
     @include('layouts.footer')
     @include('layouts.scripts')

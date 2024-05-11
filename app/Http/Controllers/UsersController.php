@@ -22,19 +22,23 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return back()->withInput()->with('errors', $validator->errors()->messages());
         }
+        if ($validator->fails()) {
+            dd($validator->errors());
+        }
+
 
         $signalant = $this->create($request->all());
         Auth::login($signalant);
-        return redirect()->route('index');
+        return redirect()->route('user.index');
     }
 
 
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tenants'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'username' => ['required', 'string','min:8', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -58,8 +62,8 @@ class UsersController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('user')->attempt($credentials)) {
-            return redirect()->route('profile');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('user.index');
         }
 
         return back()->withErrors(['email' => 'Les informations de connexion ne sont pas valides.']);
@@ -67,7 +71,20 @@ class UsersController extends Controller
 
     public function logout()
     {
-        Auth::guard('user')->logout();
         return redirect()->route('index');
+    }
+
+    public function index()
+    {
+        // recupéré l'utilisateur connecté
+        $user = Auth::user();
+        return view('users.index', compact('user'));
+    }
+
+    public function postIndex()
+    {
+        // recupéré l'utilisateur connecté
+        $user = Auth::user();
+        return view('users.post', compact('user'));
     }
 }
