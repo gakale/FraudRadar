@@ -92,13 +92,14 @@
                             <label class="form-label text-light" for="category_id">Categorie <span class="text-danger">*</span></label>
                             <select class="form-select form-select-light" id="category_id" name="category_id" >
                                 <option value="" disabled selected>Select category</option>
-                                <!-- Populate options with categories from your database -->
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->slug }}</option>
+                                @endforeach
                             </select>
                             </div>
                             <div class="mb-3">
                             <label class="form-label text-light" for="image">Image</label>
-                            <input name="image" class="file-uploader file-uploader-grid" type="file" multiple data-max-files="4" data-max-file-size="8MB" accept="image/png, image/jpeg" data-label-idle='<div class="btn btn-primary mb-3"><i class="fi-cloud-upload me-1"></i>Upload photos</div><div>or drag them in</div>'>
-                            </div>
+                            <input name="image_ids[]" class="file-uploader file-uploader-grid" type="file" multiple data-max-files="4" data-max-file-size="8MB" accept="image/png, image/jpeg" data-label-idle='<div class="btn btn-primary mb-3"><i class="fi-cloud-upload me-1"></i>Upload photos</div><div>or drag them in</div>'>                            </div>
                             <div class="mb-3">
                             <label class="form-label text-light" for="tags">Tags</label>
                             <input class="form-control form-control-light" type="text" id="tags" name="tags" placeholder="Enter tags" >
@@ -151,15 +152,27 @@
 
                     // Create a FilePond instance
                     const pond = FilePond.create(inputElement);
-                        FilePond.setOptions({
-                        server:{
-                            process: '/tmp-upload',
-                            revert: '/tmp-delete',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            }
-                        },
-                    });
+                    FilePond.setOptions({
+                            server: {
+                                process: {
+                                    url: '/tmp-upload',
+                                    ondata: (formData) => {
+                                        // Add a hidden input field for each file uploaded
+                                        const input = document.createElement('input');
+                                        input.type = 'hidden';
+                                        input.name = 'image_ids[]'; // This will be an array of file IDs
+                                        input.value = formData.get('filepond'); // This is the ID of the file
+                                        document.querySelector('form').appendChild(input);
+
+                                        return formData;
+                                    },
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                    }
+                                },
+                                revert: '/tmp-delete',
+                            },
+                        });
                  </script>
         <script>
                 tinymce.init({

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('category_id')->on('categories')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->on('users')->constrained()->onDelete('cascade');
             $table->string('status')->default('pending');
-            $table->string('image');
+            $table->json('images');
             $table->string('tags')->nullable();
             $table->string('video')->nullable();
             $table->string('url')->nullable();
