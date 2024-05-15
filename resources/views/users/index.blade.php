@@ -112,7 +112,7 @@
         <!-- Personal details-->
         <div class="row pt-4 mt-2">
           <div class="col-lg-3">
-            <h2 class="h4">Personal details</h2>
+            <h2 class="h4">Détails personnel</h2>
           </div>
           <div class="col-lg-9">
             <div class="border rounded-3 p-3" id="personal-details">
@@ -204,30 +204,7 @@
                   </div>
                   <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#socials-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                 </div>
-                <div class="collapse mt-3" id="socials-collapse" data-bs-parent="#personal-details">
-                  <div class="d-flex align-items-center mb-3">
-                    <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-facebook text-body"></i></div>
-                    <input class="form-control" type="text" data-bs-binded-element="#facebook-value" placeholder="Your Facebook account">
-                  </div>
-                  <div class="d-flex align-items-center mb-3">
-                    <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-linkedin text-body"></i></div>
-                    <input class="form-control" type="text" data-bs-binded-element="#linkedin-value" placeholder="Your LinkedIn account">
-                  </div>
-                  <div class="d-flex align-items-center mb-3">
-                    <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-twitter text-body"></i></div>
-                    <input class="form-control" type="text" data-bs-binded-element="#twitter-value" placeholder="Your Twitter account">
-                  </div>
-                  <div class="collapse" id="showMoreSocials">
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-instagram text-body"></i></div>
-                      <input class="form-control" type="text" data-bs-binded-element="#instagram-value" placeholder="Your Instagram account">
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                      <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-behance text-body"></i></div>
-                      <input class="form-control" type="text" data-bs-binded-element="#behance-value" placeholder="Your Behance account">
-                    </div>
-                  </div><a class="collapse-label collapsed d-inline-block fs-sm fw-bold text-decoration-none pt-2 pb-3" href="#showMoreSocials" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="showMoreSocials"><i class="fi-arrow-down me-2"></i></a>
-                </div>
+
               </div>
             </div>
           </div>
@@ -237,44 +214,7 @@
           <div class="col-lg-3">
             <h2 class="h4">Account settings</h2>
           </div>
-          <div class="col-lg-9">
-            <div class="border rounded-3 p-3" id="account-settings">
-              <!-- Account type-->
-              <div class="border-bottom pb-3 mb-3">
-                <div class="d-flex align-items-center justify-content-between">
-                  <div class="pe-2">
-                    <label class="form-label fw-bold">Account type</label>
-                    <div id="type-value">Job seeker (looking for a job)</div>
-                  </div>
-                  <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#type-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-                </div>
-                <div class="collapse" id="type-collapse" data-bs-parent="#account-settings">
-                  <select class="form-select mt-3" data-bs-binded-element="#type-value">
-                    <option value="" disabled>Select account type</option>
-                    <option value="Employer (looking for an employee)">Employer (looking for an employee)</option>
-                    <option value="Job seeker (looking for a job)" selected>Job seeker (looking for a job)</option>
-                  </select>
-                </div>
-              </div>
-              <!-- Two-factor authentication-->
-              <div>
-                <div class="d-flex align-items-center justify-content-between">
-                  <div class="pe-2">
-                    <label class="form-label fw-bold">Two-factor authentication</label>
-                    <div id="auth-value">Inactive</div>
-                  </div>
-                  <div data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#auth-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
-                </div>
-                <div class="collapse" id="auth-collapse" data-bs-parent="#account-settings">
-                  <select class="form-select mt-3" data-bs-binded-element="#auth-value">
-                    <option value="" disabled>Enable / disbale two-factor authentication</option>
-                    <option value="Active">Enable</option>
-                    <option value="Inactive" selected>Disable</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
         <!-- Action buttons-->
         <div class="row pt-4 mt-2">

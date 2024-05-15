@@ -106,7 +106,7 @@
                             </div>
                             <div class="mb-3">
                             <label class="form-label text-light" for="video">Video</label>
-                            <input class="form-control form-control-light" type="text" id="video" name="video" placeholder="Enter video URL">
+                            <input class="form-control form-control-light" type="url" id="video" name="video" placeholder="Enter video URL">
                             </div>
                             <div class="mb-3">
                             <label class="form-label text-light" for="url">URL</label>
@@ -148,31 +148,27 @@
                     <script>
 
                 // Get a reference to the file input element
+
                     const inputElement = document.querySelector('input[type="file"]');
 
-                    // Create a FilePond instance
-                    const pond = FilePond.create(inputElement);
-                    FilePond.setOptions({
-                            server: {
-                                process: {
-                                    url: '/tmp-upload',
-                                    ondata: (formData) => {
-                                        // Add a hidden input field for each file uploaded
-                                        const input = document.createElement('input');
-                                        input.type = 'hidden';
-                                        input.name = 'image_ids[]'; // This will be an array of file IDs
-                                        input.value = formData.get('filepond'); // This is the ID of the file
-                                        document.querySelector('form').appendChild(input);
-
-                                        return formData;
-                                    },
-                                    headers: {
-                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                                    }
+// Create a FilePond instance
+                const pond = FilePond.create(inputElement);
+                FilePond.setOptions({
+                        server: {
+                            process: {
+                                url: '/tmp-upload',
+                                ondata: (formData) => {
+                                    return formData; // Renvoyez le FormData original
                                 },
-                                revert: '/tmp-delete',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                }
                             },
-                        });
+                            revert: '/tmp-delete',
+                        },
+                        allowMultiple: true,
+
+                    });
                  </script>
         <script>
                 tinymce.init({
