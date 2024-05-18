@@ -1,5 +1,22 @@
 <div>
-    <form wire:submit.prevent="search" class="d-flex align-items-center">
+    <style>
+        .tns-carousel-wrapper {
+    /* Existing styles */
+    position: relative; /* Ensure relative positioning for absolute child elements */
+    overflow: hidden;  /* Hide any image overflow */
+}
+
+.tns-carousel-wrapper img {
+    width: 100%;       /* Make the image take up the full width of the container */
+    height: 100%;      /* Make the image take up the full height of the container */
+    object-fit: cover; /* Maintain aspect ratio while covering the entire area */
+}
+
+.tns-carousel-wrapper .position-absolute {
+    z-index: 1; /* Ensure overlay elements are above the image */
+}
+</style>
+    <form wire:submit.prevent="search" class="d-flex align-items-center " >
         <div class="position-relative me-2">
             <input class="form-control form-control-sm form-control-light w-auto" type="text" placeholder="Search..." wire:model.debounce.500ms="searchTerm" style="max-width: 160px;">
             <i class="fi-search position-absolute top-50 end-0 translate-middle-y text-light opacity-70 me-3"></i>
@@ -9,7 +26,7 @@
 
     @foreach ($frauds as $fraud)
     <div class="card card-light card-hover card-horizontal mb-4">
-        <div class="tns-carousel-wrapper card-img-top card-img-hover">
+        <div class="tns-carousel-wrapper card-img-top card-img-hover" >
             <a class="img-overlay" href="{{ route('fraud.show', $fraud->slug ) }}"></a>
             <div class="position-absolute start-0 top-0 pt-3 ps-3">
                 <span class="d-table badge bg-info">{{ $fraud->category->name }}</span>
@@ -19,14 +36,12 @@
                     <i class="fi-heart"></i>
                 </button>
             </div>
-            <div class="tns-carousel-inner position-absolute top-0 h-100">
-                @if (!empty($fraud->images))
-                    @foreach ($fraud->images as $image)
-                        <div class="bg-size-cover bg-position-center w-100 h-100" style="background-image: url('{{ Storage::url($image['path']) }}');"></div>
-                    @endforeach
-                @else
-                    <p>No images available.</p>
-                @endif
+            <div class=" position-absolute top-0 h-100">
+            @if ($fraud->firstImageName)
+                <img src="{{ Storage::url('frauds/' . $fraud->firstImageName) }}" alt="Image">
+            @else
+                <p>No image available.</p>
+            @endif
             </div>
         </div>
         <div class="card-body">

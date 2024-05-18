@@ -23,7 +23,10 @@ class FraudList extends Component
         // Décoder les images pour chaque fraude
         foreach ($frauds as $fraud) {
             if (is_string($fraud->images)) {
-                $fraud->images = json_decode($fraud->images, true);
+                preg_match('/"file_name":"([^"]+)"/', $fraud->images, $matches);
+                $fraud->firstImageName = $matches[1] ?? null;
+            } else {
+                $fraud->firstImageName = null; // No images found
             }
         }
 
