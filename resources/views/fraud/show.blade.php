@@ -22,7 +22,8 @@
           </ol>
         </nav>
         <!-- Page title-->
-        <h1 class="h2 text-light pb-3">{{$fraud->name}}</h1><img class="rounded-3" src="{{ asset('img/car-finder/blog/10.jpg') }}" alt="Image">
+        <h1 class="h2 text-light pb-3">{{$fraud->name}}</h1>
+        <img class="rounded-3" src="{{ Storage::url('frauds/' . $imageName) }}" alt="Image">
         <div class="row mt-4 pt-3">
           <!-- Post content-->
           <div class="col-lg-8">

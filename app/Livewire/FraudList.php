@@ -20,9 +20,15 @@ class FraudList extends Component
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
+        // Décoder les images pour chaque fraude
+        foreach ($frauds as $fraud) {
+            if (is_string($fraud->images)) {
+                $fraud->images = json_decode($fraud->images, true);
+            }
+        }
+
         return view('livewire.fraud-list', ['frauds' => $frauds]);
     }
-
     public function search()
     {
     }

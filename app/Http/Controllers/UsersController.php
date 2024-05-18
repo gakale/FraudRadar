@@ -71,7 +71,8 @@ class UsersController extends Controller
 
     public function logout()
     {
-        return redirect()->route('index');
+        Auth::logout();
+        return redirect()->route('home');
     }
 
     public function index()

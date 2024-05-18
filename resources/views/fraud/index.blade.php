@@ -22,7 +22,7 @@
         <!-- Page title-->
         <div class="d-flex align-items-center justify-content-between pb-4 mb-2">
           <h1 class="text-light me-3 mb-0">Fraude Liste</h1>
-          <div class="text-light"><i class="fi-car fs-lg me-2"></i><span class="align-middle">249 offers</span></div>
+          <div class="text-light"><i class="fi-file fs-lg me-2"></i><span class="align-middle">{{ App\Models\Fraud::count() }}</span></div>
         </div>
         <!-- Sorting + View-->
         <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-2">

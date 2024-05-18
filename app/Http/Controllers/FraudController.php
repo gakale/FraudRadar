@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use HTMLPurifier;
 use HTMLPurifier_Config;
+use Illuminate\Support\Facades\File;
 
 class FraudController extends Controller
 {
@@ -29,7 +30,7 @@ class FraudController extends Controller
             'video' => 'nullable|url',
             'url' => 'nullable|url',
             'image_ids' => 'nullable|array',
-            'image_ids.*' => 'url',
+            'image_ids.*' => 'string',  // Modifier ici pour valider comme chaîne
         ]);
 
         // Configurer HTMLPurifier
@@ -38,8 +39,7 @@ class FraudController extends Controller
 
         // Purifier la description
         $clean_description = $purifier->purify($request->description);
-
-        $fraud = new Fraud([
+        $fraudData = [
             'name' => $request->name,
             'description' => $clean_description,
             'category_id' => $request->category_id,
@@ -47,50 +47,54 @@ class FraudController extends Controller
             'tags' => $request->tags,
             'video' => $request->video,
             'url' => $request->url,
-        ]);
+        ];
 
-        $fraud->save();
+       // Traitement des images
+    $images = [];
+    foreach ($request->input('image_ids') as $tempUrlJson) {
+        Log::info('Temp URL JSON: ' . $tempUrlJson);
 
-        if ($request->has('image_ids')) {
-            $images = [];
-            foreach ($request->input('image_ids') as $tempUrlJson) {
-                // 1. Décoder la chaîne JSON
-                $tempUrlData = json_decode($tempUrlJson, true);
+        $tempUrlData = json_decode($tempUrlJson, true);
 
-                // 2. Extraire l'URL
-                $tempUrl = $tempUrlData['url'];
-
-                // 3. Reconstruire le chemin du fichier temporaire
-                $tempPath = str_replace('/storage', storage_path('app/public'), $tempUrl);
-
-                // 4. Valider le fichier
-                if (!file_exists($tempPath) || !getimagesize($tempPath)) {
-                    $fraud->delete();
-                    return redirect()->back()->withErrors(['image_ids' => 'Un des fichiers image est invalide.']);
-                }
-
-                // 3. Générer un nom de fichier unique
-                $filename = Str::random(40) . '.' . pathinfo($tempPath, PATHINFO_EXTENSION);
-
-                // 4. Déplacer le fichier vers le dossier final
-                Storage::move($tempPath, 'public/frauds/' . $filename);
-
-                // 5. Ajouter les informations de l'image au tableau $images
-                $images[] = [
-                    'path' => Storage::url('public/frauds/' . $filename),
-                    'file_name' => $filename,
-                    'file_size' => Storage::size('public/frauds/' . $filename),
-                    'file_type' => Storage::mimeType('public/frauds/' . $filename),
-                ];
-            }
-
-            $fraud->images = $images;
-            $fraud->save();
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            Log::error('Erreur de décodage JSON: ' . json_last_error_msg());
+            return redirect()->back()->withErrors(['image_ids' => 'Un des fichiers image est invalide.']);
         }
 
-        return redirect()->route('home')->with('success', 'Fraud reported successfully.');
+        $tempUrl = $tempUrlData['url'];
+
+        Log::info('Temp URL: ' . $tempUrl);
+
+        $tempPath = str_replace('/storage', storage_path('app/public'), $tempUrl);
+
+        if (!file_exists($tempPath) || !getimagesize($tempPath)) {
+            return redirect()->back()->withErrors(['image_ids' => 'Un des fichiers image est invalide.']);
+        }
+
+        $filename = Str::random(40) . '.' . pathinfo($tempPath, PATHINFO_EXTENSION);
+
+        // Utiliser File::copy pour copier le fichier
+        $destinationPath = storage_path('app/public/frauds/' . $filename);
+        if (!File::copy($tempPath, $destinationPath)) {
+            Log::error('Erreur lors de la copie du fichier: ' . $tempPath . ' vers ' . $destinationPath);
+            return redirect()->back()->withErrors(['image_ids' => 'Erreur lors de la copie d\'un fichier image.']);
+        }
+
+        $images[] = [
+            'path' => Storage::url('public/frauds/' . $filename),
+            'file_name' => $filename,
+            'file_size' => File::size($destinationPath),
+            'file_type' => File::mimeType($destinationPath),
+        ];
     }
 
+    $fraudData['images'] = json_encode($images);
+
+    // Enregistrer la fraude avec les images
+    $fraud = Fraud::create($fraudData);
+
+    return redirect()->route('home')->with('success', 'Fraud reported successfully.');
+}
 
     public function tmpUpload(Request $request)
 {
@@ -130,13 +134,17 @@ class FraudController extends Controller
     public function show($slug)
     {
         $fraud = Fraud::where('slug', $slug)->first();
+        preg_match('/"file_name":"([^"]+)"/', $fraud->images, $matches);
+        $imageName = $matches[1] ?? null; // Extrait le nom ou null si non trouvé
+        $firstImagePath = isset($images[0]['path']) ? $images[0]['path'] : null;
         $content = $fraud->description;
+
         $wordsPerMinute = 200; // Nombre moyen de mots lus par minute
         $wordCount = str_word_count(strip_tags($content)); // Compter le nombre de mots dans le contenu
         $estimatedTime = ceil($wordCount / $wordsPerMinute); // Calculer le temps estimé en minutes
         $shareUrl = "https://yourwebsite.com/frauds/$fraud->slug";
         // nombre de commentaires sur le fraud
         $commentCount = $fraud->comments()->count();
-        return view('fraud.show', compact('fraud', 'estimatedTime', 'shareUrl', 'commentCount'));
+        return view('fraud.show', compact('fraud', 'estimatedTime', 'shareUrl', 'commentCount', 'firstImagePath', 'imageName'));
     }
 }

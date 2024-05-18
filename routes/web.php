@@ -3,6 +3,7 @@
 use App\Http\Controllers\FraudController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +15,7 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/showRegistrationForm', [UsersController::class, 'showRegistrationForm'])->name('showRegistrationForm');
 Route::post('/register', [UsersController::class, 'register'])->name('register');

@@ -23,7 +23,7 @@ class Fraud extends Model
         return $this->belongsTo(Categorie::class);
     }
     protected $casts = [
-        'images' => AsArrayObject::class,
+        'images' => 'array',
     ];
 
     public function sluggable(): array
