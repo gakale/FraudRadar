@@ -13,6 +13,14 @@ class HomeController extends Controller
         ->latest('created_at')
         ->take(8)
         ->get();
+        foreach ($frauds as $fraud) {
+            if (is_string($fraud->images)) {
+                preg_match('/"file_name":"([^"]+)"/', $fraud->images, $matches);
+                $fraud->firstImageName = $matches[1] ?? null;
+            } else {
+                $fraud->firstImageName = null; // No images found
+            }
+        }
         return view('home', compact('frauds'));
     }
 }

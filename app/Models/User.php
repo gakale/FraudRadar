@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -53,5 +54,5 @@ class User extends Authenticatable
         return $this->hasMany(Fraud::class);
     }
 
-    
+
 }

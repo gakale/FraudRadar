@@ -20,26 +20,26 @@
       <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
         <!-- Account header-->
         <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
-          <div class="d-flex align-items-start">
-                <div class="position-relative flex-shrink-0"><img class="rounded-circle" src="{{ asset('img/avatars/37.png') }}" width="100" alt="Annette Black">
-              <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
+            <div class="d-flex align-items-start">
+                @livewire('profile-avatar')
+                <div class="ps-3 ps-sm-4">
+                    <h3 class="h5">{{ $user->username }}</h3>
+                    <ul class="list-unstyled fs-sm mb-0">
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>{{ $user->username }}</span></li>
+                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>(302) 555-0107</span></li>
+                    </ul>
+                </div>
             </div>
-            <div class="ps-3 ps-sm-4">
-              <h3 class="h5">{{ $user->username }}</h3>
-              <ul class="list-unstyled fs-sm mb-0">
-                <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>{{ $user->username }}</span></li>
-                <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>(302) 555-0107</span></li>
-              </ul>
-            </div>
-          </div><a class="nav-link p-0 d-none d-md-block" href="signin-light.html"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
+            <a class="nav-link p-0 d-none d-md-block" href="signin-light.html"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
         </div>
-        <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
+        <!-- Account menu-->
+        <a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
         <div class="collapse d-md-block" id="account-nav">
-          <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
-            <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="job-board-account-profile.html" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-            <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="{{ route('user.post') }}"><i class="fi-file mt-n1 me-2 fs-base"></i>Mes Posts</a></li>
-            <li class="nav-item d-md-none"><a class="nav-link" href="signin-light.html"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
-          </ul>
+            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="job-board-account-profile.html" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="{{ route('user.post') }}"><i class="fi-file mt-n1 me-2 fs-base"></i>Mes Posts</a></li>
+                <li class="nav-item d-md-none"><a class="nav-link" href="signin-light.html"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+            </ul>
         </div>
         <!-- Authorization info-->
         <div class="row pt-4 mt-3">

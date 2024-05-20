@@ -71,8 +71,8 @@
                     </div>
                     <div class="col">
                         <div class="bg-dark rounded text-center w-100 h-100 p-2">
-                            <i class="fi fi-dislike d-block h4 text-light mb-0 mx-center"></i>
-                            <span class="fs-xs text-light">{{ $fraud->dislikes > 0 ? $fraud->dislikes : 0 }}</span>
+                            <i class="fi fi-eye-on d-block h4 text-light mb-0 mx-center"></i>
+                            <span class="fs-xs text-light">{{ $view_count }}</span>
                         </div>
                     </div>
                 </div>

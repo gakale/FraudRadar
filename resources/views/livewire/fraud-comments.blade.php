@@ -7,7 +7,7 @@
                 <p class="text-light opacity-70">{{ $comment->content }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center pe-2">
-                        <img class="rounded-circle me-1" src="{{ $comment->user->avatar_url }}" width="48" alt="{{ $comment->user->name }}">
+                        <img class="rounded-circle me-1" src="{{ asset('storage/'.$comment->user->avatar) }}" width="48" alt="{{ $comment->user->name }}">
                         <div class="ps-2">
                             <h6 class="text-light fs-base mb-0">{{ $comment->user->name }}</h6>
                             <span class="text-light opacity-50 fs-sm">{{ $comment->created_at->diffForHumans() }}</span>

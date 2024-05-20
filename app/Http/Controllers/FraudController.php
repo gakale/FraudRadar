@@ -138,13 +138,13 @@ class FraudController extends Controller
         $imageName = $matches[1] ?? null; // Extrait le nom ou null si non trouvé
         $firstImagePath = isset($images[0]['path']) ? $images[0]['path'] : null;
         $content = $fraud->description;
-
+        $view_count = $fraud->increment('view_count');
         $wordsPerMinute = 200; // Nombre moyen de mots lus par minute
         $wordCount = str_word_count(strip_tags($content)); // Compter le nombre de mots dans le contenu
         $estimatedTime = ceil($wordCount / $wordsPerMinute); // Calculer le temps estimé en minutes
         $shareUrl = "https://yourwebsite.com/frauds/$fraud->slug";
         // nombre de commentaires sur le fraud
         $commentCount = $fraud->comments()->count();
-        return view('fraud.show', compact('fraud', 'estimatedTime', 'shareUrl', 'commentCount', 'firstImagePath', 'imageName'));
+        return view('fraud.show', compact('fraud', 'estimatedTime', 'shareUrl', 'commentCount', 'firstImagePath', 'imageName', 'view_count'));
     }
 }

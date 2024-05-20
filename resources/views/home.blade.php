@@ -58,13 +58,13 @@
                     <div class="position-absolute start-0 top-0 pt-3 ps-3">
                         <span class="d-table badge bg-info">{{ $fraud->category->name }}</span>
                     </div>
-                    <img src="{{ $fraud->images[0] ?? '#' }}" alt="Image">
+                    <img src="{{ Storage::url('frauds/' . $fraud->firstImageName) }}" alt="Image">
                 </div>
                 <div class="card-body">
                     <h3 class="h6 mb-1">
                         <a href="{{ route('fraud.show', $fraud->slug) }}" class="nav-link-light">{{ $fraud->name }}</a>
                     </h3>
-                    <p class="fs-sm text-light opacity-70">{{ Str::limit($fraud->description, 100) }}</p>
+                    <p class="fs-sm text-light opacity-70">{{ implode(' ', array_slice(str_word_count(strip_tags($fraud->description), 1), 0, 50)) }}</p>
                 </div>
             </div>
         </div>

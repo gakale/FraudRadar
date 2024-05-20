@@ -29,8 +29,14 @@ class FraudList extends Component
                 $fraud->firstImageName = null; // No images found
             }
         }
+        $view_count = $fraud->increment('view_count');
 
-        return view('livewire.fraud-list', ['frauds' => $frauds]);
+        return view('livewire.fraud-list',
+        [
+            'frauds' => $frauds,
+            'view_count' => $view_count,
+
+        ]);
     }
     public function search()
     {

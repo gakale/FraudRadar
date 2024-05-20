@@ -9,18 +9,32 @@ use Livewire\WithPagination;
 
 class UserPosts extends Component
 {
-    use WithPagination;
 
-    public $perPage = 10; // Nombre de posts par page
+    public $posts;
+    public $perPage = 2; // Nombre initial de posts à afficher
+    public $loadAmount = 2; // Nombre de posts à charger à chaque fois
+
+    public function mount()
+    {
+        $this->posts = Fraud::where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->take($this->perPage)
+            ->get();
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += $this->loadAmount;
+        $this->posts = Fraud::where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->take($this->perPage)
+            ->get();
+    }
 
     public function render()
     {
-        $userId = auth()->id(); // Récupère l'ID de l'utilisateur connecté
-
         return view('livewire.user-posts', [
-            'posts' => Fraud::where('user_id', $userId)
-                ->orderBy('created_at', 'desc') // Trie par date de création décroissante
-                ->paginate($this->perPage),
+            'posts' => $this->posts,
         ]);
     }
 }

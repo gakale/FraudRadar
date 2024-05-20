@@ -16,8 +16,8 @@
         <!-- Breadcrumb-->
         <nav class="mb-3 pb-md-1 pt-md-3" aria-label="Breadcrumb">
           <ol class="breadcrumb breadcrumb-light m-0">
-            <li class="breadcrumb-item"><a href="car-finder-home.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="car-finder-blog.html">Fraud &amp; Show</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('fraud.index') }}">Fraud &amp; list</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{$fraud->name}}</li>
           </ol>
         </nav>
@@ -30,7 +30,11 @@
             <!-- Post meta-->
             <div class="d-flex flex-wrap border-bottom border-light pb-3 mb-4"><a class="text-uppercase text-decoration-none border-end border-light pe-3 me-3 mb-2" href="#">{{ $fraud->user->username }}</a>
               <div class="d-flex align-items-center text-light border-end border-light pe-3 me-3 mb-2"><i class="fi-calendar-alt opacity-70 me-2"></i><span>{{ $fraud->created_at->format('d F Y') }}</span></div>
-              <div class="d-flex align-items-center text-light border-end border-light pe-3 me-3 mb-2"><i class="fi-clock opacity-70 me-2"></i><span>{{ $estimatedTime }}min de lecture</span></div><a class="d-flex align-items-center text-light text-decoration-none mb-2" href="#comments" data-scroll><i class="fi-chat-circle opacity-70 me-2"></i><span>{{ $commentCount }} Commentaires</span></a>
+              <div class="d-flex align-items-center text-light border-end border-light pe-3 me-3 mb-2"><i class="fi-clock opacity-70 me-2"></i><span>{{ $estimatedTime }}min de lecture</span></div><a class="d-flex align-items-center text-light text-decoration-none mb-2" href="#comments" data-scroll><i class="fi-chat-circle opacity-70 me-2"></i><span>{{ $commentCount }} Commentaires</span></a>-
+              <div class="d-flex align-items-center text-light border-end border-light pe-3 me-3 mb-2"><i class="fi fi-eye-on
+                opacity-70 me-2"></i><span> Vues {{ $view_count}}</span></div>
+
+
             </div>
             {!! $fraud->description !!}
             <!-- Tags + Sharing-->

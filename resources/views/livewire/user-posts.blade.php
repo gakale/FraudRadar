@@ -39,7 +39,9 @@
         </div>
     @endforeach
 
-    <div class="mt-4">
-        {{ $posts->links() }}
+    <div class="mt-4 text-center">
+        @if ($posts->count() >= $perPage)
+            <button class="btn btn-primary" wire:click="loadMore">Voir plus</button>
+        @endif
     </div>
 </div>
